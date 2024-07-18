@@ -13,13 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
-
-      # Invoke nested workflow 3
-      - name: Run Nested Workflow 3
-        uses: ./.github/workflows/build.yaml
-        with:
-          appName: ${{ inputs.appName }}
+        uses: actions/checkout@v4
 
       # Additional steps specific to backend CI
 
