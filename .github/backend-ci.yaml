@@ -1,5 +1,4 @@
 name: Backend CI Workflow
-
 on:
   workflow_call:
     inputs: # Input Parameters
@@ -7,11 +6,20 @@ on:
         description: 'Name of the Application - for which CI is triggered'
         required: true
         type: string
+      branch:
+        description: 'Name of the branch - to checkout code. By default, checkout will be from main branch'
+        required: false
+        type: string
+        default: 'main'
+
+env:
+  REGISTRY: ghcr.io
 
 jobs:
-  build:
-    name: Run build
-    uses: ./.github/workflows/build.yaml
+  build-and-push:
+    name: Build Application Docker Image, Scan and Push to Github Packages
+    uses: ./.github/workflows/docker-build-and-push.yaml
     with:
       appName: ${{ inputs.appName }}
+      branch: ${{ inputs.branch }}
     secrets: inherit
