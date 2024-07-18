@@ -19,4 +19,4 @@ jobs:
 
       # Example step using the provided `appName` input
       - name: Deployed App Name
-        run: echo "App Name : ${{ inputs.appName }}"
+        run: echo "App Name (Deploy) : ${{ inputs.appName }}"
