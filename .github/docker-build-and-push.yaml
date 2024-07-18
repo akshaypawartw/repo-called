@@ -1,0 +1,20 @@
+name: Build, Scan and Publish Docker Image
+on:
+  workflow_call:
+    inputs:
+      appName:
+        description: 'Name of the Application - for which CI is triggered'
+        required: true
+        type: string
+      branch:
+        description: 'Name of the branch - to checkout code. By default, checkout will be from main branch'
+        required: false
+        type: string
+        default: 'main'
+
+jobs:
+  docker-build:
+    name: Build Docker Image
+    uses: ./.github/workflows/docker-build.yaml
+    with:
+      appName: ${{ inputs.appName }}
