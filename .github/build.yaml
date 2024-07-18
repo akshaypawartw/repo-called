@@ -1,0 +1,28 @@
+name: Build
+
+on:
+  workflow_call:
+    inputs: # Input Parameters
+      appName:
+        description: 'Name of the Application - for which CI is triggered'
+        required: true
+        type: string
+
+jobs:
+  backend_ci_job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      # Invoke nested workflow 3
+      - name: Run Nested Workflow 3
+        uses: ./.github/workflows/build.yaml
+        with:
+          appName: ${{ inputs.appName }}
+
+      # Additional steps specific to backend CI
+
+      # Example step using the provided `appName` input
+      - name: Display App Name
+        run: echo "App Name (Nested 1): ${{ inputs.appName }}"
