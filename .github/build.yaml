@@ -9,7 +9,7 @@ on:
         type: string
 
 jobs:
-  backend_ci_job:
+  build:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -19,4 +19,4 @@ jobs:
 
       # Example step using the provided `appName` input
       - name: Display App Name
-        run: echo "App Name (Nested 1): ${{ inputs.appName }}"
+        run: echo "App Name (build): ${{ inputs.appName }}"
